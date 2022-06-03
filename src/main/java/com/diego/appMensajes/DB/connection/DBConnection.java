@@ -9,19 +9,22 @@ public class DBConnection {
     public Connection getConnection(){
         Connection connection = null;
 
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mensajes_app",
-                    "root",
-                    "");
+        if (connection == null){
+            try {
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mensajes_app",
+                        "root",
+                        "");
 
-            if(connection != null){
-                System.out.println("connection succes!");
-            } else{
-                throw new SQLException("SQL error - try again.");
+                if(connection != null){
+                    System.out.println("connection succes!");
+                } else{
+                    throw new SQLException("SQL error - try again.");
+                }
+            } catch (Exception e){
+                System.out.println("error during the connection to the DB" + e);
             }
-        } catch (Exception e){
-            System.out.println("error during the connection to the DB" + e);
         }
+
 
         return connection;
     }
