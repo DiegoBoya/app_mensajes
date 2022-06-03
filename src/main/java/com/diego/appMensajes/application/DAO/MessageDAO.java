@@ -72,7 +72,65 @@ public class MessageDAO {
     }
 
     public static void deleteMessage(int messageID) {
+        try{
+            String query = "DELETE FROM mensajes where id_mensaje = ?";
+            ps = conexion.prepareStatement(query);
+            ps.setInt(1, messageID);
+            int i = ps.executeUpdate();
 
+        }catch(SQLException e){
+            System.out.println("Error al intentar leer la DB.");
+            System.out.println(e);
+        }
+    }
+
+    /**
+     * TO DO: ELIMINAR EL MENSAJE HABIENDO OBTENIDO ANTES EL MENSAJE
+     * @param messageID
+     * @return el Message eliminado
+     */
+    public static Message removeMessage(int messageID) {
+    // PARECE QUE TIENE PROBLEMA, COMO QUE PS NO PUEDE HACER 2 QUERYS SEGUIDAS, TIRA UN SQLEXCEPTION
+        Message message = null;
+        try{
+            String query = "DELETE FROM mensajes where id_mensaje = ?";
+            ps = conexion.prepareStatement(query);
+            ps.setInt(1, messageID);
+            // message = getMessageById(messageID);
+            int i = ps.executeUpdate();
+
+        }catch(SQLException e){
+            System.out.println("Error al intentar leer la DB.");
+            System.out.println(e);
+        }
+        return message;
+    }
+
+    public static Message getMessageById(int messageID) {
+
+        Message m = new Message();
+        //ArrayList<Message> messages = new ArrayList<>();
+
+        try{
+            String query = "SELECT * FROM mensajes where id_mensaje = ?";
+            ps = conexion.prepareStatement(query);
+            ps.setInt(1, messageID);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                m.setIdMensaje(rs.getInt("id_mensaje"));
+                m.setMensaje(rs.getString("mensaje"));
+                m.setAutorMensaje(rs.getString("autor_mensaje"));
+                m.setFechaMensaje(rs.getString("fecha_mensaje"));
+            }
+
+
+        }catch(SQLException e){
+            System.out.println("ID no encontrado.");
+            System.out.println(e);
+        }
+
+        return m;
     }
 
     public static void updateMessage(Message message){

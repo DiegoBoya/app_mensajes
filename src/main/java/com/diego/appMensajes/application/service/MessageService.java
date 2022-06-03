@@ -10,7 +10,7 @@ public class MessageService {
 
     private static Scanner sc = new Scanner(System.in);
 
-    public static void createMessage(){
+    public static void createMessage() {
 
         System.out.println("Escribe tu mensaje");
         String mensaje = sc.nextLine();
@@ -25,7 +25,7 @@ public class MessageService {
         MessageDAO.createMessage(registro);
     }
 
-    public static void readMessages(){
+    public static void readMessages() {
         System.out.println("-----------------------------------------------------------");
         System.out.println("obteniendo los mensajes de la BD....");
 
@@ -41,11 +41,51 @@ public class MessageService {
         System.out.println("------------------fin de la lectura-------------------------");
     }
 
-    public static void deleteMessage(){
+    public static void deleteMessage() {
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Ingrese el ID del mensaje que desea eliminar.");
+        System.out.println("para salir de esta seccion oprima 0");
+
+        int messageToDelete = sc.nextInt();
+
+
+        while (messageToDelete != 0 && messageToDelete < 1) {
+            System.out.println("ID invalido, ingrese un numero de ID correcto u oprima 0 para salir");
+            messageToDelete = sc.nextInt();
+        }
+
+        if (messageToDelete == 0) {
+            System.out.println("Operacion abortada, no se ha eliminado ningun mensaje");
+        } else {
+            MessageDAO.deleteMessage(messageToDelete);
+            System.out.println("el mensaje ha sido eliminado.");
+        }
 
     }
 
-    public static void editMessage(){
+    //todo: hacer que se borre el mensaje, pero que se imprima por consola lo que se borro
+    public static void removeMessage() {
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Ingrese el ID del mensaje que desea eliminar.");
+        System.out.println("para salir de esta seccion oprima 0");
+
+        int messageToDelete = sc.nextInt();
+
+
+       /* if (messageToDelete < 1 && messageToDelete != 0){
+            System.out.println("ID invalido, ingrese un numero de ID correcto u oprima 0 para salir");
+        }*/
+
+       /* Message messageDeleted = MessageDAO.deleteMessage(messageToDelete);
+        if ( messageDeleted != null){
+            System.out.println("Mensaje eliminado:" + messageDeleted);
+        }else{
+            System.out.println( "ocurrio un error, no se elimino el mensaje");
+        }*/
+
+    }
+
+    public static void editMessage() {
 
     }
 
