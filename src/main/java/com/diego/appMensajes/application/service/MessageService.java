@@ -3,6 +3,7 @@ package com.diego.appMensajes.application.service;
 import com.diego.appMensajes.application.DAO.MessageDAO;
 import com.diego.appMensajes.application.model.Message;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MessageService {
@@ -24,8 +25,20 @@ public class MessageService {
         MessageDAO.createMessage(registro);
     }
 
-    public static void listMessages(){
+    public static void readMessages(){
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("obteniendo los mensajes de la BD....");
 
+        //recibe la lista de mensajes que MessageDAO obtiene de la DB
+        ArrayList<Message> messages = MessageDAO.readMessage();
+
+
+        //imprime los registros
+        for (Message m : messages) {
+            System.out.println(m.toString());
+            System.out.println("\n");
+        }
+        System.out.println("------------------fin de la lectura-------------------------");
     }
 
     public static void deleteMessage(){

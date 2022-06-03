@@ -55,4 +55,12 @@ public class Message {
     public String getFechaMensaje() {
         return fechaMensaje;
     }
+
+    @Override
+    public String toString() {
+        return  "ID=" + idMensaje +
+                " --- autor: " + autorMensaje + "\n" +
+                "mensaje= [" + mensaje +"]" + "\n" +
+                "fechaMensaje= [" + fechaMensaje +"]" + "\n" ;
+    }
 }

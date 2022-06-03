@@ -34,7 +34,7 @@ public class Main {
                 MessageService.createMessage();
                 break;
             case 2:
-                MessageService.listMessages();
+                MessageService.readMessages();
                 break;
             case 3:
                 MessageService.editMessage();
