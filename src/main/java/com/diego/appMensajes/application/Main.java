@@ -1,20 +1,58 @@
 package com.diego.appMensajes.application;
 
 import com.diego.appMensajes.DB.connection.DBConnection;
+import com.diego.appMensajes.application.service.MessageService;
 
 
 import java.sql.Connection;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        Scanner input = new Scanner(System.in);
         DBConnection dbConnection = new DBConnection();
 
-        try{
+        int opcion = 0;
+
+        do {
+
+        System.out.println("===========================");
+        System.out.println("Welcome! Coose an option:");
+        System.out.println("1. create a message");
+        System.out.println("2. list all the messages");
+        System.out.println("3. edit a message");
+        System.out.println("4. delete a message");
+        System.out.println("5. exit");
+        System.out.println("===========================");
+
+        opcion = input.nextInt();
+
+        switch (opcion){
+            case 1:
+                MessageService.createMessage();
+                break;
+            case 2:
+                MessageService.listMessages();
+                break;
+            case 3:
+                MessageService.editMessage();
+                break;
+            case 4:
+                MessageService.deleteMessage();
+                break;
+
+        }
+
+        }while(opcion != 5);
+
+
+
+       /* try{
             Connection cnx = dbConnection.getConnection();
         } catch(Exception e){
             System.out.println(e);
-        }
+        }*/
     }
 }
