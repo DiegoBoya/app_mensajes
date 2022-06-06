@@ -79,7 +79,7 @@ public class MessageDAO {
             int i = ps.executeUpdate();
 
         }catch(SQLException e){
-            System.out.println("Error al intentar leer la DB.");
+            System.out.println("Error al intentar eliminar el mensaje de la DB.");
             System.out.println(e);
         }
     }
@@ -134,6 +134,19 @@ public class MessageDAO {
     }
 
     public static void updateMessage(Message message){
+
+        try{
+            String query = "UPDATE mensajes SET mensaje=? where id_mensaje = ?";
+            ps = conexion.prepareStatement(query);
+            ps.setString(1, message.getMensaje());
+            ps.setInt(2, message.getIdMensaje());
+            int i = ps.executeUpdate();
+            System.out.println("el mensaje ha sido actualizado.");
+
+        }catch(SQLException e){
+            System.out.println("Error al intentar editar el mensaje de la DB.");
+            System.out.println(e);
+        }
 
     }
 }

@@ -3,6 +3,7 @@ package com.diego.appMensajes.application.service;
 import com.diego.appMensajes.application.DAO.MessageDAO;
 import com.diego.appMensajes.application.model.Message;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -87,6 +88,19 @@ public class MessageService {
 
     public static void editMessage() {
 
+        //todo: validar el ID del msj por formato que no sea negativo
+        System.out.println("ingrese el ID del mensaje que quiere editar");
+        int idMessage = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("ingrese el nuevo mensaje");
+        String newStringMessage = sc.nextLine();
+
+        //crea un Message con el ID pasado de parametro y con el nuevo mensaje
+        Message message = new Message();
+        message.setIdMensaje(idMessage);
+        message.setMensaje(newStringMessage);
+        MessageDAO.updateMessage(message);
     }
 
 }
