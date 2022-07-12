@@ -31,7 +31,7 @@ public class MessageService {
         System.out.println("obteniendo los mensajes de la BD....");
 
         //recibe la lista de mensajes que MessageDAO obtiene de la DB
-        ArrayList<Message> messages = MessageDAO.readMessage();
+        ArrayList<Message> messages = MessageDAO.readMessages();
 
 
         //imprime los registros
@@ -64,7 +64,7 @@ public class MessageService {
 
     }
 
-    //todo: hacer que se borre el mensaje, pero que se imprima por consola lo que se borro
+    //se borre el mensaje, pero que se imprime por consola lo que se borro
     public static void removeMessage() {
         System.out.println("-----------------------------------------------------------");
         System.out.println("Ingrese el ID del mensaje que desea eliminar.");
@@ -73,16 +73,16 @@ public class MessageService {
         int messageToDelete = sc.nextInt();
 
 
-       /* if (messageToDelete < 1 && messageToDelete != 0){
+       if (messageToDelete < 1 && messageToDelete != 0){
             System.out.println("ID invalido, ingrese un numero de ID correcto u oprima 0 para salir");
-        }*/
+        }
 
-       /* Message messageDeleted = MessageDAO.deleteMessage(messageToDelete);
+       Message messageDeleted = MessageDAO.removeMessage(messageToDelete);
         if ( messageDeleted != null){
             System.out.println("Mensaje eliminado:" + messageDeleted);
         }else{
             System.out.println( "ocurrio un error, no se elimino el mensaje");
-        }*/
+        }
 
     }
 

@@ -15,6 +15,7 @@ public class MessageDAO {
     private static Connection conexion = getDBConnection();
 
     private static PreparedStatement ps = null;
+    private static PreparedStatement ps2 = null;
 
     private static Connection getDBConnection(){
         if(conexion == null){
@@ -41,7 +42,7 @@ public class MessageDAO {
 
     }
 
-    public static ArrayList<Message> readMessage() {
+    public static ArrayList<Message> readMessages() {
 
         ArrayList<Message> messages = new ArrayList<>();
 
@@ -96,7 +97,7 @@ public class MessageDAO {
             String query = "DELETE FROM mensajes where id_mensaje = ?";
             ps = conexion.prepareStatement(query);
             ps.setInt(1, messageID);
-            // message = getMessageById(messageID);
+            message = getMessageById(messageID);
             int i = ps.executeUpdate();
 
         }catch(SQLException e){
@@ -113,9 +114,11 @@ public class MessageDAO {
 
         try{
             String query = "SELECT * FROM mensajes where id_mensaje = ?";
-            ps = conexion.prepareStatement(query);
-            ps.setInt(1, messageID);
-            ResultSet rs = ps.executeQuery();
+            ps2 = conexion.prepareStatement(query);
+            ps2.setInt(1, messageID);
+
+            //todo: no hacer un resultSet, solo es un mensaje que debe traer
+            ResultSet rs = ps2.executeQuery();
 
             while(rs.next()){
                 m.setIdMensaje(rs.getInt("id_mensaje"));

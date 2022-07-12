@@ -24,7 +24,8 @@ public class Main {
         System.out.println("2. list all the messages");
         System.out.println("3. edit a message");
         System.out.println("4. delete a message");
-        System.out.println("5. exit");
+        System.out.println("5. remove message");
+        System.out.println("6. exit");
         System.out.println("===========================");
 
         opcion = input.nextInt();
@@ -42,10 +43,12 @@ public class Main {
             case 4:
                 MessageService.deleteMessage();
                 break;
-
+            case 5:
+                MessageService.removeMessage();
+                break;
         }
 
-        }while(opcion != 5);
+        }while(opcion != 6);
 
 
 
